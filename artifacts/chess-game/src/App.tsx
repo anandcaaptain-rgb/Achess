@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import ReviewList from "@/pages/review-list";
 import ReviewGame from "@/pages/review-game";
+import Multiplayer from "@/pages/multiplayer";
 
 const queryClient = new QueryClient();
 
@@ -13,6 +14,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/multiplayer" component={Multiplayer} />
       <Route path="/review" component={ReviewList} />
       <Route path="/review/:id" component={ReviewGame} />
       <Route component={NotFound} />

@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
-import { Flag, Play, List, Handshake } from 'lucide-react';
+import { Flag, Play, List, Handshake, Users } from 'lucide-react';
 import { getListGamesQueryKey } from '@workspace/api-client-react';
 import { useQueryClient } from '@tanstack/react-query';
 
@@ -74,6 +74,10 @@ export default function Home() {
             <h1 className="font-serif font-semibold text-lg tracking-wide text-primary">CHESS</h1>
           </div>
           <nav className="flex gap-4">
+            <Link href="/multiplayer" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+              <Users className="w-4 h-4" />
+              Play Online
+            </Link>
             <Link href="/review" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
               <List className="w-4 h-4" />
               Games

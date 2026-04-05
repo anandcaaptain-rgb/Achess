@@ -146,9 +146,11 @@ export function useChess({ playerColor, difficulty, onGameOver, readOnly = false
 
     if (isEngineTurn && engineRef.current) {
       setIsEngineThinking(true);
-      const depth = Math.max(1, Math.min(10, Math.ceil(difficulty / 2)));
+      // movetime in ms: level 1 = 300ms, level 20 = 3000ms — gives a human-feeling pace
+      const movetime = Math.round(200 + difficulty * 140);
+      const depth = Math.max(1, Math.min(12, Math.ceil(difficulty / 2)));
       engineRef.current.postMessage(`position fen ${chess.fen()}`);
-      engineRef.current.postMessage(`go depth ${depth}`);
+      engineRef.current.postMessage(`go movetime ${movetime} depth ${depth}`);
     }
   }, [fen, playerColor, readOnly, isGameOver, difficulty, chess]);
 
