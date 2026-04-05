@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: API specification for Chess vs Stockfish
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: games
+    description: Chess game operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,76 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /games:
+    get:
+      operationId: listGames
+      tags: [games]
+      summary: List saved games
+      description: Returns all saved games
+      responses:
+        "200":
+          description: List of games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Game"
+    post:
+      operationId: createGame
+      tags: [games]
+      summary: Save a game
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGameBody"
+      responses:
+        "201":
+          description: Game saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+  /games/{id}:
+    get:
+      operationId: getGame
+      tags: [games]
+      summary: Get a game by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Game found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Game"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteGame
+      tags: [games]
+      summary: Delete a game
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
 components:
   schemas:
     HealthStatus:
@@ -33,4 +105,52 @@ components:
           type: string
       required:
         - status
-
+    Game:
+      type: object
+      properties:
+        id:
+          type: integer
+        pgn:
+          type: string
+        result:
+          type: string
+          description: "Game result: white, black, or draw"
+        playerColor:
+          type: string
+          description: "Player color: white or black"
+        difficulty:
+          type: integer
+          description: "Stockfish difficulty 1-20"
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - pgn
+        - result
+        - playerColor
+        - difficulty
+        - createdAt
+    CreateGameBody:
+      type: object
+      properties:
+        pgn:
+          type: string
+        result:
+          type: string
+        playerColor:
+          type: string
+        difficulty:
+          type: integer
+      required:
+        - pgn
+        - result
+        - playerColor
+        - difficulty
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
