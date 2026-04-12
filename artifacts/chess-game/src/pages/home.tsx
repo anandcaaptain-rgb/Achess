@@ -68,8 +68,8 @@ export default function Home() {
       <header className="border-b border-border bg-card">
         <div className="container max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center text-primary-foreground font-bold font-serif text-xl shadow-inner">
-              ♞
+            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center shadow-inner">
+              <img src="/pieces/bN.svg" alt="chess knight" className="w-6 h-6 object-contain" draggable={false} />
             </div>
             <h1 className="font-serif font-semibold text-lg tracking-wide text-primary">CHESS</h1>
           </div>

@@ -57,7 +57,7 @@ export default function ReviewList() {
         ) : sortedGames.length === 0 ? (
           <Card className="bg-card border-border/50 border-dashed">
             <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-              <div className="text-4xl mb-4 opacity-50">♟️</div>
+              <img src="/pieces/bP.svg" alt="pawn" className="w-12 h-12 mb-4 opacity-50" draggable={false} />
               <h3 className="text-lg font-medium mb-1">No saved games</h3>
               <p className="text-muted-foreground text-sm mb-6">Complete a match against Stockfish to save it here.</p>
               <Button asChild>

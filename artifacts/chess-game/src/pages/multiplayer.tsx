@@ -84,8 +84,8 @@ export default function Multiplayer() {
       <header className="border-b border-border bg-card">
         <div className="container max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center text-primary-foreground font-bold font-serif text-xl shadow-inner">
-              ♞
+            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center shadow-inner">
+              <img src="/pieces/bN.svg" alt="chess knight" className="w-6 h-6 object-contain" draggable={false} />
             </div>
             <h1 className="font-serif font-semibold text-lg tracking-wide text-primary">CHESS</h1>
           </div>
@@ -234,7 +234,7 @@ export default function Multiplayer() {
                 <div className="flex justify-between items-center px-4 bg-muted/30 py-2 rounded-t-md border-x border-t border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-sm bg-muted flex items-center justify-center shadow-inner">
-                      <span className="font-serif text-lg">{topColor === 'b' ? '♟' : '♙'}</span>
+                      <img src={topColor === 'b' ? '/pieces/bP.svg' : '/pieces/wP.svg'} alt="pawn" className="w-6 h-6 object-contain" draggable={false} />
                     </div>
                     <div>
                       <div className="font-medium text-sm">{opponentLabel}</div>
@@ -261,7 +261,7 @@ export default function Multiplayer() {
                 <div className="flex justify-between items-center px-4 bg-muted/30 py-2 rounded-b-md border-x border-b border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-sm bg-primary flex items-center justify-center shadow-inner">
-                      <span className="font-serif text-lg text-primary-foreground">{bottomColor === 'w' ? '♙' : '♟'}</span>
+                      <img src={bottomColor === 'w' ? '/pieces/wP.svg' : '/pieces/bP.svg'} alt="pawn" className="w-6 h-6 object-contain" draggable={false} />
                     </div>
                     <div>
                       <div className="font-medium text-sm">{myLabel}</div>
